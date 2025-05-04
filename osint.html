@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OSINT Tool List</title>
+  <style>
+    /* --- CYBER BACKGROUND --- */
+    body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 255, 0, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 0, 0.2) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 10s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+   @keyframes gridMove {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 40px, 40px 0;
+  }
+}
+
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+      opacity: 0.05;
+      z-index: -1;
+    }
+
+    /* --- MAIN STYLING --- */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: white;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    aside {
+      width: 250px;
+      background: #1e1e1e;
+      padding: 20px;
+      overflow-y: auto;
+      border-right: 1px solid #333;
+    }
+
+    aside h2 {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .category-link {
+      display: block;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      background: #2c2c2c;
+      color: white;
+      text-decoration: none;
+    }
+
+    .category-link:hover {
+      background: #3a3a3a;
+    }
+
+    main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .section {
+      background: #1b1b1b;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+
+    .section-header {
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .section-content {
+      display: none;
+    }
+
+    .tool-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .tool-list li {
+      padding: 10px;
+      border-bottom: 1px solid #333;
+    }
+
+    .tool-list li:last-child {
+      border-bottom: none;
+    }
+
+    .tool-list a {
+      color: #ff5722;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .tool-list a:hover {
+      text-decoration: underline;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+    }
+
+    .show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <aside>
+    <h2>Categories</h2>
+    <a class="category-link" href="#search-engines">Search Engines</a>
+    <a class="category-link" href="#ip">IP Geolocation</a>
+    <a class="category-link" href="#social">Social Media</a>
+    <a class="category-link" href="#email">Email Lookup</a>
+    <a class="category-link" href="#mobile">Mobile Number OSINT</a>
+    <a class="category-link" href="#instagram">Instagram OSINT</a>
+    <a class="category-link" href="#domain">Domain Lookup</a>
+    <a class="category-link" href="#username">Username Lookup</a>
+    <a class="category-link" href="#breach">Breach Data Check</a>
+    <a class="category-link" href="#metadata">Metadata Viewer</a>
+    <a class="category-link" href="#reverse-image-search">Reverse Image Search</a>
+    <a class="category-link" href="#imei-lookup">IMEI Lookup</a>
+    <a class="category-link" href="#teligram">Teligram Lookup</a>
+    <a class="category-link" href="#data-search">Data Search</a>
+    <a class="category-link" href="#dorks-search">Google dorks</a>
+    <a class="category-link" href="#sock-puppet">Sock Puppet</a>
+    <a class="category-link" href="#virus-scanning">Virus Scanning</a>
+    <a class="category-link" href="#vehicle-osint">Vehicle OSINT</a>
+    <a class="category-link" href="#crypto">Cryptocurrency OSINT</a>
+    <a class="category-link" href="#dark-web-osint">Dark Web OSINT</a>
+    <a class="category-link" href="#dark-web-indexing">Dark Web Indexing & Discovery</a>
+    <a class="category-link" href="#darknet-marketplaces">Darknet Marketplaces & Platforms</a>
+    <a class="category-link" href="#ransomware-leaks">Ransomware Leak Sites & Groups</a>
+    <a class="category-link" href="#osint-resources">OSINT Resources & Tools</a>
+    <a class="category-link" href="#multimedia-osint-tutorials">Multimedia OSINT Tutorials</a>
+    <a class="category-link" href="#hidden-internet-resources">Hidden Internet Resources</a>
+    <a href="#anonymous-search-tools" class="category-link">Anonymous Search Tools</a>
+    <a href="#telegram-useful-bots" class="category-link">Telegram Useful Bots</a>
+    <a href="#hacking-osint-tutorials" class="category-link">Hacking & OSINT Tutorials</a>
+    <a href="#about" class="category-link">About</a>
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+
+  </aside>
+
+  <main>
+    
+    <div class="section" id="search-engines">
+      <div class="section-header" onclick="toggleSection(this)">
+        Search Engines <span class="icon">▼</span>
+      </div>
+      <div class="section-content">
+        <ul class="tool-list">
+          <li><strong>Google</strong> — The most popular search engine. <a href="https://www.google.com/" target="_blank">Visit</a></li>
+          <li><strong>Wolfram Alpha</strong> — A computational knowledge engine. <a href="https://www.wolframalpha.com/" target="_blank">Visit</a></li>
+          <li><strong>Mojeek</strong> — A privacy-focused search engine. <a href="https://www.mojeek.com/" target="_blank">Visit</a></li>
+          <li><strong>OnlySearch</strong> — A simple search engine. <a href="https://onlysearch.co/" target="_blank">Visit</a></li>
+          <li><strong>Netvibes</strong> — A search engine for web widgets. <a href="https://www.3ds.com/products/netvibes" target="_blank">Visit</a></li>
+          <li><strong>Oscobo</strong> — A privacy-first search engine. <a href="https://www.oscobo.com/" target="_blank">Visit</a></li>
+          <li><strong>Ask.com</strong> — The question-and-answer search engine. <a href="https://www.ask.com/?o=1474130" target="_blank">Visit</a></li>
+          <li><strong>Advangle</strong> — A search engine for advanced queries. <a href="http://advangle.com/" target="_blank">Visit</a></li>
+          <li><strong>UVRX</strong> — Search engine for various purposes. <a href="http://www.uvrx.com/" target="_blank">Visit</a></li>
+          <li><strong>Yahoo</strong> — Popular search engine with additional services. <a href="https://www.yahoo.com/" target="_blank">Visit</a></li>
+          <li><strong>Bing</strong> — Microsoft's search engine. <a href="https://www.bing.com/" target="_blank">Visit</a></li>
+          <li><strong>Additional Resource</strong> — You can explore more OSINT tools on <a href="https://en.fofa.info/" target="_blank">Visit</a></li>
+          <li><strong>Yandex</strong> — A Russian search engine. <a href="https://yandex.com/" target="_blank">Visit</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    
+    
+    <div class="section" id="ip">
+      <div class="section-header" onclick="toggleSection(this)">
+        IP Geolocation <span class="icon">▼</span>
+      </div>
+      <div class="section-content">
+        <ul class="tool-list">
+          <li><strong>IPinfo</strong> — Find IP address details including location and ISP information. <a href="https://ipinfo.io" target="_blank">Visit</a></li>
+          <li><strong>Shodan</strong> — Search and analyze devices connected to the internet by IP address. <a href="https://shodan.io" target="_blank">Visit</a></li>
+          <li><strong>IP2Location</strong> — Identify IP address location, proxy status, and more. <a href="https://www.ip2location.com/" target="_blank">Visit</a></li>
+          <li><strong>GeoIPTool</strong> — Instantly view the location of an IP address on a map. <a href="https://geoiptool.com" target="_blank">Visit</a></li>
+          <li><strong>MaxMind</strong> — Accurate IP geolocation and fraud detection services. <a href="https://www.maxmind.com" target="_blank">Visit</a></li>
+          <li><strong>DB-IP</strong> — Lookup IP addresses to find geolocation and ISP information. <a href="https://db-ip.com" target="_blank">Visit</a></li>
+          <li><strong>IPStack</strong> — Real-time IP address geolocation and security data. <a href="https://ipstack.com" target="_blank">Visit</a></li>
+          <li><strong>WhatIsMyIP</strong> — Find your IP address and its approximate location. <a href="https://whatismyipaddress.com" target="_blank">Visit</a></li>
+          <li><strong>IPLocation.net</strong> — Multiple database lookup for finding IP location info. <a href="https://www.iplocation.net" target="_blank">Visit</a></li>
+          <li><strong>ip-api</strong> — API service to get IP geolocation details quickly. <a href="http://ip-api.com/" target="_blank">Visit</a></li>
+          <li><strong>HackerTarget Nmap</strong> — Online Nmap port scanner to discover open ports. <a href="https://hackertarget.com/nmap-online-port-scanner/" target="_blank">Visit</a></li>
+          <li><strong>Prowl by Lupovis</strong> — View real-time data from global honeypots. <a href="https://prowl.lupovis.io/" target="_blank">Visit</a></li>
+          <li><strong>IPVoid</strong> — IP reputation and blacklist check tool. <a href="https://www.ipvoid.com/" target="_blank">Visit</a></li>
+          <li><strong>KeyCDN IP Geolocation</strong> — Find the geographic location of any IP address. <a href="https://tools.keycdn.com/geo" target="_blank">Visit</a></li>
+          <li><strong>IPinfo.io</strong> — IP address data, location, and ISP lookup. <a href="https://ipinfo.io/" target="_blank">Visit</a></li>
+          
+          <li><strong>IP  Address location </strong> — Ip To location <a href="https://www.ipaddresslocation.org/" target="_blank">Visit</a></li>
+
+          <li><strong>IP Subnet Calculator</strong> — Calculate IP ranges and subnet masks. <a href="https://www.calculator.net/ip-subnet-calculator.html" target="_blank">Visit</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="social">
+      <div class="section-header" onclick="toggleSection(this)">
+        Social Media Lookup <span class="icon">▼</span>
+      </div>
+      <div class="section-content">
+        <ul class="tool-list">
+          <li><strong>Facebook OSINT</strong> — Search Facebook profiles and posts. <a href="https://one-plus.github.io/Facebook" target="_blank">Visit</a></li>
+          <li><strong>Twitter OSINT</strong> — Investigate Twitter accounts and activities. <a href="https://one-plus.github.io/Twitter" target="_blank">Visit</a></li>
+          <li><strong>Instagram OSINT</strong> — Analyze Instagram profiles and media. <a href="https://one-plus.github.io/Instagram" target="_blank">Visit</a></li>
+          <li><strong>YouTube OSINT</strong> — Investigate YouTube channels and videos. <a href="https://one-plus.github.io/Youtube" target="_blank">Visit</a></li>
+          <li><strong>Website Information</strong> — Collect information about websites and domains. <a href="https://one-plus.github.io/WebsiteInformation" target="_blank">Visit</a></li>
+          <li><strong>Social Media Simulator</strong> — Simulate social media posts and profiles. <a href="https://simitator.com/" target="_blank">Visit</a></li>
+          <li><strong>Facebook Data Search (IntelX)</strong> — Find Facebook data using IntelX tools. <a href="https://intelx.io/tools?tab=facebook" target="_blank">Visit</a></li>
+          <li><strong>Facebook ID Finder</strong> — Find Facebook numeric IDs from profile URLs. <a href="https://lookup-id.com/" target="_blank">Visit</a></li>
+          <li><strong>Facebook Profile Finder</strong> — Search Facebook profiles by keywords or info. <a href="https://findfb.id/" target="_blank">Visit</a></li>
+          <li><strong>Forum Search (BoardReader)</strong> — Search forums and communities for posts. <a href="https://boardreader.com/" target="_blank">Visit</a></li>
+          <li><strong>Snapchat Add</strong> — Find and add Snapchat profiles. <a href="https://www.snapchat.com/add/" target="_blank">Visit</a></li>
+          <li><strong>Instagram Stories Viewer</strong> — View Instagram stories anonymously. <a href="https://storiesig.info/en/" target="_blank">Visit</a></li>
+          <li><strong>Social Media Media Downloader</strong> — Download media from different platforms. <a href="http://publer.com/tools/-downloader" target="_blank">Visit</a></li>
+     
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" id="email">
+      <div class="section-header" onclick="toggleSection(this)">
+        Email Lookup <span class="icon">▼</span>
+      </div>
+      <div class="section-content">
+        <ul class="tool-list">
+          <li><strong>Epieos</strong> — Search for email addresses linked to accounts across multiple platforms. <a href="https://epieos.com/" target="_blank">Visit</a></li>
+<li><strong>Hunter</strong> — Verify email addresses and find professional email contacts. <a href="https://hunter.io/email-verifier" target="_blank">Visit</a></li>
+<li><strong>CentralOps</strong> — Perform deep email address investigations and domain lookups. <a href="https://centralops.net/co/emaildossier.aspx" target="_blank">Visit</a></li>
+<li><strong>ViewDNS</strong> — Explore DNS and email records for domains and addresses. <a href="https://viewdns.info/" target="_blank">Visit</a></li>
+<li><strong>MXToolbox</strong> — Check email server health and perform email verification. <a href="https://mxtoolbox.com/emailhealth" target="_blank">Visit</a></li>
+<li><strong>Have I Been Pwned</strong> — Check if your email address has been part of a data breach. <a href="https://haveibeenpwned.com/" target="_blank">Visit</a></li>
+<li><strong>Holehe</strong> — OSINT tool to check if an email is registered on many sites. <a href="https://github.com/megadose/holehe" target="_blank">Visit</a></li>
+<li><strong>Dehashed</strong> — Search across breached databases using emails, usernames, and IPs. <a href="https://dehashed.com/" target="_blank">Visit</a></li>
+<li><strong>Email Hippo</strong> — Verify the deliverability and validity of email addresses. <a href="https://tools.emailhippo.com/" target="_blank">Visit</a></li>
+<li><strong>Lullar</strong> — Find people’s profiles linked to email addresses. <a href="https://lullar-com-3.appspot.com/en" target="_blank">Visit</a></li>
+<li><strong>GetProspect</strong> — Find and verify business email addresses for lead generation. <a href="https://getprospect.com/" target="_blank">Visit</a></li>
+<li><strong>Avast Hack Check</strong> — Discover if your email or passwords have been leaked online. <a href="https://www.avast.com/hackcheck#android" target="_blank">Visit</a></li>
+<li><strong>Cybernews Personal Data Leak Checker</strong> — Check if your email or phone number has been exposed in data breaches. <a href="https://cybernews.com/personal-data-leak-check/" target="_blank">Visit</a></li>
+
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="section" id="mobile">
+        <div class="section-header" onclick="toggleSection(this)">
+          Mobile Number OSINT <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>Ignorant (GitHub)</strong> – OSINT framework for phone numbers — <a href="https://github.com/megadose/ignorant" target="_blank">Visit</a></li>
+            <li><strong>Lyzem</strong> – Phone number intelligence tool — <a href="https://lyzem.com/" target="_blank">Visit</a></li>
+            <li><strong>OSINT.Rocks</strong> – OSINT tools collection — <a href="https://osint.rocks/" target="_blank">Visit</a></li>
+            <li><strong>OPRecon (GitHub)</strong> – Scan phone numbers for OSINT data — <a href="https://github.com/AbirHasan2005/OPRecon" target="_blank">Visit</a></li>
+            <li><strong>CallTracer</strong> – Indian mobile tracking — <a href="https://calltracer.in/" target="_blank">Visit</a></li>
+            <li><strong>Find and Trace</strong> – Indian phone number tracker — <a href="https://www.findandtrace.com/" target="_blank">Visit</a></li>
+            <li><strong>@TrueCaller_Z_Bot</strong> – Telegram bot for number lookup — <a href="https://t.me/TrueCaller_Z_Bot" target="_blank">Visit</a></li>
+            <li><strong>@truecaller9bot</strong> – Another Telegram bot for phone search — <a href="https://t.me/truecaller9bot" target="_blank">Visit</a></li>
+         <li><strong>@NUMBER_TRAC_NG_BOT</strong> mobile number advanced info - <a href="https://t.me/NUMBER_TRAC_NG_BOT" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+    
+      <div class="section" id="instagram">
+        <div class="section-header" onclick="toggleSection(this)">
+          Instagram OSINT Tools <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>SocialBlade</strong> — Check Instagram follower stats, growth trends, and rankings. <a href="https://socialblade.com/instagram" target="_blank">Visit</a></li>
+            <li><strong>NotJustAnalytics</strong> — Detailed Instagram account analytics and engagement tracking. <a href="https://app.notjustanalytics.com/" target="_blank">Visit</a></li>
+            <li><strong>Inflact Profile Analyzer</strong> — Analyze user bios, posts, hashtags, and engagement. <a href="https://inflact.com/tools/profile-analyzer/" target="_blank">Visit</a></li>
+            <li><strong>InstaTrack</strong> — Track followers, unfollowers, and account activity in real-time. <a href="https://instrack.app/" target="_blank">Visit</a></li>
+            <li><strong>PathSocial Profile Analyzer</strong> — Profile analysis for growth, insights, and optimization. <a href="https://www.pathsocial.com/free-instagram-tools/instagram-profile-analyzer/" target="_blank">Visit</a></li>
+            <li><strong>SocialInsider Engagement Calculator</strong> — Calculate average engagement rates for profiles. <a href="https://www.socialinsider.io/free-tools/instagram-engagement-calculator" target="_blank">Visit</a></li>
+            <li><strong>Story Saver</strong> — story post reel prifle <a href="https://www.save-free.com/nl/" target="_blank">Visit</a></li>
+            <li><strong>Downloader</strong> — Insta FT YT TikTok DOwnloader. <a href="https://www.dredown.com/instagram" target="_blank">Visit</a></li>
+            <li><strong>Instaloader (GitHub)</strong> — Download Instagram posts, profiles, hashtags via command-line. <a href="https://instaloader.github.io/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+
+      <div class="section" id="domain">
+        <div class="section-header" onclick="toggleSection(this)">
+          Domain Lookup <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>WhoisFreaks</strong> — WHOIS record lookup with DNS, IP, and historical data. <a href="https://whoisfreaks.com/tools/whois/lookup" target="_blank">Visit</a></li>
+            <li><strong>Whoxy</strong> — WHOIS database and API access for domain details and owner info. <a href="https://www.whoxy.com/" target="_blank">Visit</a></li>
+            <li><strong>Web-Check (AS93)</strong> — Advanced domain investigation with WHOIS, DNS, SSL checks. <a href="https://web-check.as93.net/" target="_blank">Visit</a></li>
+            <li><strong>GoDaddy WHOIS</strong> — Domain search and WHOIS lookup with registrar data. <a href="https://www.godaddy.com/offers/" target="_blank">Visit</a></li>
+            <li><strong>Who.is</strong> — Simple and fast WHOIS lookup for any domain. <a href="https://who.is/" target="_blank">Visit</a></li>
+            <li><strong>Name.com WHOIS</strong> — Lookup domain info including expiration, registrant, and DNS. <a href="https://www.name.com/whois-lookup" target="_blank">Visit</a></li>
+            <li><strong>Tucows Domains</strong> — WHOIS lookup and domain search from Tucows registry. <a href="https://tucowsdomains.com/whois-search/" target="_blank">Visit</a></li>
+            <li><strong>Educause WHOIS</strong> — Lookup .edu domains specifically with institutional info. <a href="https://net.educause.edu/whois.htm" target="_blank">Visit</a></li>
+            <li><strong>Hostinger WHOIS</strong> — Free tool to get WHOIS data for any domain. <a href="https://www.hostinger.com/whois" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section" id="username">
+        <div class="section-header" onclick="toggleSection(this)">
+          Username Lookup <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>@osint_maigret_bot</strong> — Telegram bot for username checks — <a href="https://t.me/osint_maigret_bot" target="_blank">Visit</a></li>
+            <li><strong>Instant Username Search</strong> — Check username availability across platforms — <a href="https://instantusername.com/" target="_blank">Visit</a></li>
+            <li><strong>Namechk</strong> — Find available usernames and domains — <a href="https://namechk.com/" target="_blank">Visit</a></li>
+            <li><strong>Aware Online Username Tool</strong> — OSINT tool for searching usernames — <a href="https://www.aware-online.com/en/osint-tools/username-search-tool/" target="_blank">Visit</a></li>
+            <li><strong>UserSearch</strong> — Search usernames on multiple platforms — <a href="https://usersearch.org/" target="_blank">Visit</a></li>
+            <li><strong>DNS Checker Social Name Tool</strong> — Check username availability — <a href="https://dnschecker.org/social-media-name-checker.php" target="_blank">Visit</a></li>
+            <li><strong>BeenVerified Username Search</strong> — Username search across databases — <a href="https://www.beenverified.com/username-search/" target="_blank">Visit</a></li>
+            <li><strong>InfoTracer Username Search</strong> — Investigate online identities — <a href="https://infotracer.com/username-search/" target="_blank">Visit</a></li>
+            <li><strong>Username.social</strong> — Simple and fast username search — <a href="https://www.username.social/" target="_blank">Visit</a></li>
+            <li><strong>Namecheckr</strong> — Realtime username and domain checker — <a href="https://www.namecheckr.com/" target="_blank">Visit</a></li>
+            <li><strong>UserFinder (GitHub)</strong> — OSINT tool for username investigation — <a href="https://github.com/mishakorzik/UserFinder" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section" id="breach">
+        <div class="section-header" onclick="toggleSection(this)">
+           Data Breach Check <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>Intelligence X</strong> — Deep web and breach data search — <a href="https://intelx.io/" target="_blank">Visit</a></li>
+            <li><strong>LeakCheck</strong> — Check if email or username is leaked — <a href="https://leakcheck.io/" target="_blank">Visit</a></li>
+            <li><strong>LeakPeek</strong> — Database breach lookup tool — <a href="https://leakpeek.com/" target="_blank">Visit</a></li>
+            <li><strong>DeHashed</strong> — Powerful hacked data search engine — <a href="https://dehashed.com/search" target="_blank">Visit</a></li>
+            <li><strong>Sn0int Search</strong> — OSINT framework for breach lookups — <a href="https://sn0int.readthedocs.io/en/latest/search.html" target="_blank">Visit</a></li>
+            <li><strong>pwnedOrNot (GitHub)</strong> — CLI tool to check pwned status — <a href="https://github.com/thewhiteh4t/pwnedOrNot" target="_blank">Visit</a></li>
+            <li><strong>Photon (GitHub)</strong> — Crawls for URLs and data leaks — <a href="https://github.com/s0md3v/Photon" target="_blank">Visit</a></li>
+            <li><strong>F-Secure ID Theft Checker</strong> — Scan for stolen credentials — <a href="https://www.f-secure.com/en/identity-theft-checker" target="_blank">Visit</a></li>
+            <li><strong>Norton Breach Detection</strong> — Check if personal data is leaked — <a href="https://in.norton.com/breach-detection" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section" id="metadata">
+        <div class="section-header" onclick="toggleSection(this)">
+          Metadata Viewer <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>ExifTool</strong> — View metadata for images and documents. <a href="https://exiv2.org/" target="_blank">Visit</a></li>
+            <li><strong>Fotoforensics</strong> — Analyze image metadata, including EXIF, to detect manipulations. <a href="https://www.fotoforensics.com/" target="_blank">Visit</a></li>
+            <li><strong>ImageMagick</strong> — Command-line tool for image manipulation and metadata analysis. <a href="https://imagemagick.org/" target="_blank">Visit</a></li>
+            <li><strong>Get-Metadata.com</strong> — Extract metadata from various file types. <a href="https://get-metadata.com/" target="_blank">Visit</a></li>
+            <li><strong>Online EXIF Viewer</strong> — Extract and view EXIF metadata of images online. <a href="https://www.exiv2.org/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="reverse-image-search">
+        <div class="section-header" onclick="toggleSection(this)">
+          Reverse Image Search <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>Google Images</strong> — Perform reverse image searches using Google’s image engine. <a href="https://images.google.com/?gws_rd=ssl" target="_blank">Visit</a></li>
+            <li><strong>Bing Images</strong> — Microsoft’s image search platform with reverse image capabilities. <a href="https://www.bing.com/images" target="_blank">Visit</a></li>
+            <li><strong>Yandex Images</strong> — Russian search engine known for powerful reverse image search. <a href="https://yandex.ru/images/" target="_blank">Visit</a></li>
+            <li><strong>TinEye</strong> — Specialized reverse image search tool with match tracking. <a href="https://tineye.com/" target="_blank">Visit</a></li>
+            <li><strong>Image Measurement Tool</strong> — Analyze and compare images visually. <a href="https://imagemeasurement.online/image/select" target="_blank">Visit</a></li>
+            <li><strong>Image Locator GPT</strong> — Use GPT to find visually similar or source images. <a href="https://chatgpt.com/g/g-wx1eLTbGL-image-locator" target="_blank">Visit</a></li>
+            <li><strong>DiffChecker (Image Compare)</strong> — Compare two images and spot differences. <a href="https://www.diffchecker.com/image-compare/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section" id="imei-lookup">
+        <div class="section-header" onclick="toggleSection(this)">
+          IMEI Lookup <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>IMEI Tracker</strong> — Track phone location using IMEI number. <a href="https://imei-tracker.com/track/" target="_blank">Visit</a></li>
+            <li><strong>IMEI.net</strong> — IMEI checker for phone model, blacklist status, and more. <a href="https://imei.net/" target="_blank">Visit</a></li>
+            <li><strong>IMEI.info</strong> — Get full device details and IMEI status. <a href="https://www.imei.info/imei-checker/" target="_blank">Visit</a></li>
+            <li><strong>IMEICheck</strong> — SIM lock, carrier, and blacklist checking. <a href="https://imeicheck.com/imei-check" target="_blank">Visit</a></li>
+            <li><strong>IMEI Pro</strong> — Blacklist checker and phone database. <a href="https://www.imeipro.info/" target="_blank">Visit</a></li>
+            <li><strong>Swappa</strong> — Clean or blacklisted device check via IMEI. <a href="https://swappa.com/" target="_blank">Visit</a></li>
+            <li><strong>OpenCelliD</strong> — Community-powered mobile tower location data. <a href="https://opencellid.org/" target="_blank">Visit</a></li>
+            <li><strong>DoctorSIM</strong> — Unlock your phone and check IMEI status. <a href="https://www.doctorsim.com/" target="_blank">Visit</a></li>
+            <li><strong>iUnlocker</strong> — iPhone blacklist and carrier check. <a href="https://iunlocker.net/check_imei.php" target="_blank">Visit</a></li>
+            <li><strong>IMEICheck UK</strong> — UK-based IMEI checking tool. <a href="https://www.imeicheck.co.uk/" target="_blank">Visit</a></li>
+            <li><strong>Apple Coverage Checker</strong> — Official Apple IMEI-based warranty/activation check. <a href="https://checkcoverage.apple.com/" target="_blank">Visit</a></li>
+            <li><strong>Samsung IMEI Check</strong> — Verify Samsung device status. <a href="https://www.samsung.com/in/support/imei-checker/" target="_blank">Visit</a></li>
+            <li><strong>CEIR India</strong> — Govt of India portal to block/stolen IMEI check. <a href="https://ceir.gov.in/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+
+      <div class="section" id="teligram">
+        <div class="section-header" onclick="toggleSection(this)">
+          Teligram Osint <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+      
+            <li><strong>Teligram Information</strong> — get chats on teligram. <a href="https://www.google.com" target="_blank">Visit</a></li>
+      <li><strong>@tgdb_bot</strong> — Find information from Telegram databases. <a href="https://t.me/tgdb_bot" target="_blank">Visit</a></li>
+      <li><strong>@username_to_id_bot</strong> — Convert Telegram username to user ID. <a href="https://t.me/username_to_id_bot" target="_blank">Visit</a></li>
+      <li><strong>Telegram OSINT Toolkit</strong> — Open-source Telegram OSINT tools on GitHub. <a href="https://github.com/yusiqo/telegram-osint" target="_blank">Visit</a></li>
+      <li><strong>@joinhider_bot</strong> — Hide your join notifications in groups. <a href="https://t.me/joinhider_bot" target="_blank">Visit</a></li>
+      <li><strong>@combot</strong> — Telegram group analytics and management bot. <a href="https://t.me/combot" target="_blank">Visit</a></li>
+      <li><strong>Geogramint</strong> — Geolocation OSINT tool for Telegram users. <a href="https://github.com/Alb-310/Geogramint" target="_blank">Visit</a></li>
+      <li><strong>@public_private_bot</strong> — Get private and public Telegram group information. <a href="https://t.me/public_private_bot" target="_blank">Visit</a></li>
+      <li><strong>@EyeofJack_bot</strong> — Extract metadata from Telegram groups, channels, and messages. <a href="https://t.me/EyeofJack_bot" target="_blank">Visit</a></li>
+      <li><strong>@GroupHelpBot</strong> — Group member tracking and analysis for Telegram groups. <a href="https://t.me/GroupHelpBot" target="_blank">Visit</a></li>
+      <li><strong>Telegram Channels Search</strong> — Search public groups and channels. <a href="https://telegramchannels.me/" target="_blank">Visit</a></li>
+      <li><strong>TGStat</strong> — Telegram analytics for channels and groups. <a href="https://tgstat.com/" target="_blank">Visit</a></li>
+      <li><strong>@tgstatbot</strong> — Telegram channel and group analytics bot. <a href="https://t.me/tgstatbot" target="_blank">Visit</a></li>
+      <li><strong>@SangMataInfo_bot</strong> — Track past usernames of Telegram users. <a href="https://t.me/SangMataInfo_bot" target="_blank">Visit</a></li>
+      <li><strong>@TelescanBot</strong> — Get detailed metadata of Telegram public groups and channels. <a href="https://t.me/TelescanBot" target="_blank">Visit</a></li>
+      <li><strong>@userinfobot</strong> — Find Telegram user ID and account information. <a href="https://t.me/userinfobot" target="_blank">Visit</a></li>
+            
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="section" id="data-search">
+        <div class="section-header" onclick="toggleSection(this)">
+          Data Search <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>Ration Card Deep Search (All States)</strong> — Search ration card details for all Indian states. <a href="https://www.cyberyodha.org/2023/01/ration-card-deep-search-all-states.html" target="_blank">Visit</a></li>
+            <li><strong>PM Kisan</strong> — Government scheme to provide financial assistance to farmers. <a href="https://pmkisan.gov.in/" target="_blank">Visit</a></li>
+            <li><strong>GST Search</strong> — GST registration and taxpayer search. <a href="https://services.gst.gov.in/services/searchtp" target="_blank">Visit</a></li>
+            <li><strong>eCourts Judgments</strong> — Search judgments across Indian courts. <a href="https://judgments.ecourts.gov.in/pdfsearch/index.php" target="_blank">Visit</a></li>
+            <li><strong>Indian Kanoon</strong> — A legal search engine for Indian laws and judgments. <a href="https://indiankanoon.org/" target="_blank">Visit</a></li>
+            <li><strong>Electoral Search</strong> — Search for voter details on the Election Commission's website. <a href="https://electoralsearch.eci.gov.in/" target="_blank">Visit</a></li>
+            <li><strong>Voter's List Download</strong> — Download voter roll from the Election Commission's portal. <a href="https://voters.eci.gov.in/download-eroll" target="_blank">Visit</a></li>
+            <li><strong>Ancestry India</strong> — Search for historical and genealogical records. <a href="https://www.ancestry.com/search/places/asia/india/" target="_blank">Visit</a></li>
+            <li><strong>Missing Persons India - Facebook</strong> — Missing persons' details in India. <a href="https://www.facebook.com/missingpersonsofindia/" target="_blank">Visit</a></li>
+            <li><strong>Andaman & Nicobar Missing Persons</strong> — Missing persons list from Andaman and Nicobar. <a href="http://db.and.nic.in/missing/list.aspx" target="_blank">Visit</a></li>
+            <li><strong>Missing Persons India - Facebook Group</strong> — A Facebook group for missing persons. <a href="https://www.facebook.com/groups/533902940136455" target="_blank">Visit</a></li>
+            <li><strong>Death Certificate for Missing Person</strong> — Legal procedure for obtaining a death certificate for a missing person. <a href="https://www.legalserviceindia.com/legal/article-5281-death-certificate-of-a-missing-person.html" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+       
+      <div class="section" id="dorks-search">
+        <div class="section-header" onclick="toggleSection(this)">
+       Google Dorks <span class="icon">▼</span>
+        </div>
+
+      <div class="section-content">
+        <ul class="tool-list">
+          <li><strong>Pentestingdorks </strong> — dorks making using kyeword <a href="https://pentestingdorks.netlify.app/" target="_blank">Visit</a></li>
+          <li><strong> Dork search</strong> — faster google dorking  <a href="https://dorksearch.com/" target="_blank">Visit</a></li>
+          <li><strong> lite dorks </strong> — elite google dorks <a href="https://github.com/Raunaksplanet/Elite-Google-Dorks-Search-by-Biscuit target="_blank>Visit</a></li>
+          <li><strong>  Google-dorks-bug-bounty </strong> —  Collection of Google Dorks for bug bounty hunting <a href="https://github.com/TakSec/google-dorks-bug-bounty" target="_blank">Visit</a></li>
+          <li><strong>Dorki by Attaxa </strong> —  Tool to generate and test Google Dorks. <a href="https://dorki.attaxa.com/" target="_blank">Visit</a></li>
+          <li><strong> Exploit-DB Google Hacking DB </strong> — Database of Google Dorks for finding security issues. <a href="https://www.exploit-db.com/google-hacking-database" target="_blank">Visit</a></li>
+          <li><strong>Dork Genius </strong> — Platform to create and share Google Dorks. <a href="https://dorkgenius.com/" target="_blank">Visit</a></li>
+          <li><strong>Pentest-Tools Google Hacking</strong> — Online tool for information gathering using Google Dorks. <a href="https://pentest-tools.com/information-gathering/google-hacking" target="_blank">Visit</a></li>
+          <li><strong> Hackr.io Cheat Sheet</strong> — List of useful Google Dorks with examples.  <a href="https://hackr.io/blog/google-dorks-cheat-sheet/" target="_blank">Visit</a></li>
+          <li><strong> Compass OSINT PDF</strong> — Cheat sheet for Google Dorks and OSINT tips.  <a href="https://www.compass-security.com/fileadmin/Datein/Research/White_Papers/osint_cheat_sheet.pdf" target="_blank">Visit</a></li>
+          <li><strong> Hackr.io PDF (Studylib)</strong> — PDF version of Google Dorks cheat sheet.<a href="https://studylib.net/doc/27151162/hackr.io%E2%80%99s-google-dorks-cheat-sheet--pdf" target="_blank">Visit</a></li>
+          <li><strong> Dork GPT </strong> — tool to generate Google Dorks from plain text.  <a href="https://www.dorkgpt.com/#google_vignette" target="_blank">Visit</a></li>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="section" id="sock-puppet">
+        <div class="section-header" onclick="toggleSection(this)">
+          Sock Puppet <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>Crazy Mailing</strong> — Temporary email creation tool. <a href="https://www.crazymailing.com/" target="_blank">Visit</a></li>
+            <li><strong>Guerrilla Mail</strong> — Disposable email address service. <a href="https://www.guerrillamail.com/" target="_blank">Visit</a></li>
+            <li><strong>This Person Does Not Exist</strong> — AI-generated faces. <a href="https://thispersondoesnotexist.com/" target="_blank">Visit</a></li>
+            <li><strong>Generated Photos Anonymizer</strong> — Modify or anonymize generated faces. <a href="https://generated.photos/anonymizer" target="_blank">Visit</a></li>
+            <li><strong>Picdefacer</strong> — Blur or anonymize faces in images. <a href="https://picdefacer.com/en/" target="_blank">Visit</a></li>
+            <li><strong>Fake Person Generator</strong> — Generate fake identities. <a href="https://www.fakepersongenerator.com/Index/generate" target="_blank">Visit</a></li>
+            <li><strong>Fake Phone Number</strong> — Generate fake phone numbers. <a href="https://www.fakepersongenerator.com/fake-phone-number" target="_blank">Visit</a></li>
+            <li><strong>Behind The Name</strong> — Random name generator. <a href="https://www.behindthename.com/random/" target="_blank">Visit</a></li>
+            <li><strong>This Resume Does Not Exist</strong> — Generate fake resumes. <a href="https://thisresumedoesnotexist.com/" target="_blank">Visit</a></li>
+            <li><strong>Businer Fake ID</strong> — Generate fake ID cards. <a href="https://businer.com/fakeid.php" target="_blank">Visit</a></li>
+            <li><strong>Crazy Mailing</strong> — Temporary email creation tool. <a href="https://www.crazymailing.com/" target="_blank">Visit</a></li>
+            <li><strong>FakeDetail WhatsApp Chat Generator</strong> — Generate fake WhatsApp chat for fun or testing. <a href="https://fakedetail.com/fake-whatsapp-chat-generator" target="_blank">Visit</a></li>
+            <li><strong>FakeWhats Generator</strong> — Another tool to create fake WhatsApp conversations. <a href="https://www.fakewhats.com/generator" target="_blank">Visit</a></li>
+            <li><strong>Zeoob</strong> — WhatsApp chat generator and prank tool. <a href="https://zeoob.com/" target="_blank">Visit</a></li>
+            <li><strong>FakeWhats</strong> — Create fake WhatsApp messages easily. <a href="https://www.fakewhats.com/" target="_blank">Visit</a></li>
+            <li><strong>iFakeTextMessage</strong> — Generate realistic fake iPhone text messages. <a href="https://ifaketextmessage.com/" target="_blank">Visit</a></li>
+            <li><strong>AI Cut Fake Text Creator</strong> — Make fake text messages using templates. <a href="https://www.aicut.pro/tools/faketextmessagescreator" target="_blank">Visit</a></li>
+            <li><strong>Crayo Text-to-Video</strong> — Convert scripts into AI-generated video. <a href="https://crayo.ai/create/text-video?step=script" target="_blank">Visit</a></li>
+            <li><strong>Fake Name Generator</strong> — Generate complete fake identities. <a href="https://www.fakenamegenerator.com/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section" id="virus-scanning">
+        <div class="section-header" onclick="toggleSection(this)">
+          Virus Scanning <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>Browserling</strong> — Online browser sandbox for testing suspicious URLs. <a href="https://www.browserling.com/browser-sandbox" target="_blank">Visit</a></li>
+            <li><strong>Hybrid Analysis</strong> — Malware analysis and threat intelligence. <a href="https://www.hybrid-analysis.com/" target="_blank">Visit</a></li>
+            <li><strong>ANY.RUN</strong> — Interactive malware sandbox for real-time analysis. <a href="https://app.any.run/" target="_blank">Visit</a></li>
+            <li><strong>VirusTotal</strong> — Multi-antivirus scanning for files and URLs. <a href="https://www.virustotal.com/gui/home/upload" target="_blank">Visit</a></li>
+            <li><strong>urlscan.io</strong> — Visual inspection and scanning of URLs. <a href="https://urlscan.io/" target="_blank">Visit</a></li>
+            <li><strong>Cuckoo Sandbox</strong> — Automated malware analysis system. <a href="http://cuckoo.cert.ee/" target="_blank">Visit</a></li>
+            <li><strong>Google Safe Browsing</strong> — Check if a site is flagged by Google. <a href="https://transparencyreport.google.com/safe-browsing/search" target="_blank">Visit</a></li>
+            <li><strong>URLVoid</strong> — Scan websites for threats and blacklisting. <a href="https://www.urlvoid.com/" target="_blank">Visit</a></li>
+            <li><strong>ScamAdviser</strong> — Verify if a website is safe or a scam. <a href="https://www.scamadviser.com/" target="_blank">Visit</a></li>
+            <li><strong>Joe Sandbox</strong> — Deep malware analysis platform. <a href="https://www.joesandbox.com/#windows" target="_blank">Visit</a></li>
+            <li><strong>MobSF Live</strong> — Mobile security framework for malware analysis. <a href="https://mobsf.live/" target="_blank">Visit</a></li>
+            <li><strong>Palo Alto URL Filtering</strong> — Check website category and risk. <a href="https://urlfiltering.paloaltonetworks.com/" target="_blank">Visit</a></li>
+            <li><strong>Bluecoat Site Review</strong> — Web content categorization tool. <a href="https://sitereview.bluecoat.com/#/" target="_blank">Visit</a></li>
+            <li><strong>DocGuard</strong> — Scan documents for hidden malware. <a href="https://www.docguard.io/" target="_blank">Visit</a></li>
+            <li><strong>FileScan.io</strong> — Cloud malware analysis for files. <a href="https://www.filescan.io/scan" target="_blank">Visit</a></li>
+            <li><strong>Kaspersky OpenTip</strong> — Lookup for files, IPs, and domains. <a href="https://opentip.kaspersky.com/#search/" target="_blank">Visit</a></li>
+            <li><strong>Blacklist Checker</strong> — Check domain or IP blacklisting status. <a href="https://blacklistchecker.com/" target="_blank">Visit</a></li>
+            <li><strong>FranceVerif</strong> — Verify the legitimacy of websites. <a href="https://franceverif.fr/fr/verifier-site-web" target="_blank">Visit</a></li>
+            <li><strong>RST Cloud IOC Lookup</strong> — Check Indicators of Compromise. <a href="https://www.rstcloud.com/ioc-lookup/" target="_blank">Visit</a></li>
+            <li><strong>Scamalytics</strong> — IP and fraud risk analysis. <a href="https://scamalytics.com/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section" id="vehicle-osint">
+        <div class="section-header" onclick="toggleSection(this)">
+          Vehicle OSINT <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>VehicleInfo App</strong> — Check vehicle registration details on the go. <a href="https://vehicleinfo.app/#google_vignette" target="_blank">Visit</a></li>
+            <li><strong>RTO Vehicle Information</strong> — Detailed vehicle info from RTO records. <a href="https://www.rtovehicleinformation.com/" target="_blank">Visit</a></li>
+            <li><strong>Policybazaar Vehicle Owner Details</strong> — Access owner information and registration details. <a href="https://www.policybazaar.com/rto/vehicle-owner-details/" target="_blank">Visit</a></li>
+            <li><strong>Vehicle RTO App (Google Play)</strong> — Android app for RTO vehicle details. <a href="https://play.google.com/store/apps/details?id=info.vehicle.rto.car" target="_blank">Visit</a></li>
+            <li><strong>@vehicle_osintpvt_bot</strong> — Telegram bot for vehicle info lookups. <a href="https://t.me/vehicleinfo4" target="_blank">Visit</a></li>
+            <li><strong>@CarinfobyNaveen_bot</strong> — Another Telegram bot for car information. <a href="https://t.me/vehicleinfo4" target="_blank">Visit</a></li>
+            <li><strong>@vehicle_info_x_bot</strong> — Telegram bot for checking vehicle info. <a href="https://t.me/vehicle_info_x_bot" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section" id="crypto">
+        <div class="section-header" onclick="toggleSection(this)">
+          Cryptocurrency OSINT <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>WalletExplorer</strong> — Analyze Bitcoin wallet addresses and transactions. <a href="https://www.walletexplorer.com/" target="_blank">Visit</a></li>
+            <li><strong>Blockchair</strong> — Explore and search blockchain data for multiple cryptocurrencies. <a href="https://blockchair.com/" target="_blank">Visit</a></li>
+            <li><strong>Bloxy</strong> — Visualize and analyze Ethereum blockchain data. <a href="https://bloxy.info/" target="_blank">Visit</a></li>
+            <li><strong>CoinMarketCap</strong> — Track prices, volume, and market cap of cryptocurrencies. <a href="https://coinmarketcap.com/" target="_blank">Visit</a></li>
+            <li><strong>Blockchain Explorer</strong> — Explore Bitcoin blockchain transactions and addresses. <a href="https://www.blockchain.com/explorer?utm_campaign=expnav_explorer" target="_blank">Visit</a></li>
+            <li><strong>Aware Online Cryptocurrency Tool</strong> — Search for cryptocurrency addresses using OSINT methods. <a href="https://www.aware-online.com/en/osint-tools/cryptocurrency-search-tool/" target="_blank">Visit</a></li>
+            <li><strong>BlockExplorer</strong> — View Bitcoin blockchain data and transactions. <a href="https://www.blockexplorer.com/" target="_blank">Visit</a></li>
+            <li><strong>SICP</strong> — Investigate cryptocurrency wallets and transactions. <a href="https://sicp.ueba.su/" target="_blank">Visit</a></li>
+            <li><strong>BlockCypher</strong> — Real-time blockchain explorer for Bitcoin and other coins. <a href="https://live.blockcypher.com/" target="_blank">Visit</a></li>
+            <li><strong>IntelX</strong> — Search for leaked crypto wallet addresses and more. <a href="https://intelx.io/" target="_blank">Visit</a></li>
+            <li><strong>Etherscan</strong> — Explore and analyze Ethereum blockchain transactions. <a href="https://etherscan.io/" target="_blank">Visit</a></li>
+            <li><strong>Beaconcha.in</strong> — Ethereum 2.0 blockchain explorer. <a href="https://beaconcha.in/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+
+      <div class="section" id="dark-web-osint">
+        <div class="section-header" onclick="toggleSection(this)">
+          Dark Web OSINT <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>http://xjypo5vzgmo7jca6b322dnqbsdnp3amd24ybx26x5nxbusccjkm4pwid.onion.pet/</strong> — Onion site for various services. <a href="http://xjypo5vzgmo7jca6b322dnqbsdnp3amd24ybx26x5nxbusccjkm4pwid.onion.pet/" target="_blank">Visit</a></li>
+            <li><strong>http://dominosy6liy333vol227hjsud767wa7jkokhgs2f6ew6eultnyhodad.onion.pet/</strong> — Onion site related to services. <a href="http://dominosy6liy333vol227hjsud767wa7jkokhgs2f6ew6eultnyhodad.onion.pet/" target="_blank">Visit</a></li>
+            <li><strong>https://thehiddenwiki.com/</strong> — A directory of hidden services. <a href="https://thehiddenwiki.com/" target="_blank">Visit</a></li>
+            <li><strong>https://ahmia.fi</strong> — Search engine for Tor network. <a href="https://ahmia.fi" target="_blank">Visit</a></li>
+            <li><strong>https://darksearch.io/</strong> — Dark web search engine. <a href="https://darksearch.io/" target="_blank">Visit</a></li>
+            <li><strong>https://2jwcnprqbugvyi6ok2h2h7u26qc6j5wxm7feh3znlh2qu3h6hjld4kyd.onion/</strong> — Onion search service. <a href="https://2jwcnprqbugvyi6ok2h2h7u26qc6j5wxm7feh3znlh2qu3h6hjld4kyd.onion/" target="_blank">Visit</a></li>
+            <li><strong>https://3g2upl4pq6kufc4m.onion/</strong> — Another onion-based website. <a href="https://3g2upl4pq6kufc4m.onion/" target="_blank">Visit</a></li>
+            <li><strong>https://grams64rarzrk7rzdaz2fpb7lehcyi7zrrf5kd6w2uoamp7jw2aq6vyd.onion/</strong> — Onion site for dark web search. <a href="https://grams64rarzrk7rzdaz2fpb7lehcyi7zrrf5kd6w2uoamp7jw2aq6vyd.onion/" target="_blank">Visit</a></li>
+            <li><strong>https://5u56fjmxu63xcmbk.onion/search.php</strong> — Onion search page. <a href="https://5u56fjmxu63xcmbk.onion/search.php" target="_blank">Visit</a></li>
+            <li><strong>https://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion/wiki/index.php/Main_Page</strong> — Dark web wiki. <a href="https://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion/wiki/index.php/Main_Page" target="_blank">Visit</a></li>
+            <li><strong>https://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion/</strong> — Onion search engine. <a href="https://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion/" target="_blank">Visit</a></li>
+            <li><strong>http://7ukmkdtyxdkdivtjad57klqnd3kdsmq6tp45rrsxqnu76zzv3jvitlqd.onion/</strong> — Onion site for various services. <a href="http://7ukmkdtyxdkdivtjad57klqnd3kdsmq6tp45rrsxqnu76zzv3jvitlqd.onion/" target="_blank">Visit</a></li>
+            <li><strong>http://educate6mw6luxyre24uq3ebyfmwguhpurx7ann635llidinfvzmi3yd.onion/</strong> — Educational dark web service. <a href="http://educate6mw6luxyre24uq3ebyfmwguhpurx7ann635llidinfvzmi3yd.onion/" target="_blank">Visit</a></li>
+            <li><strong>http://trashbakket2sfmaqwmvv57dfnmacugvuhwxtxaehcma6ladugfe2cyd.onion/</strong> — Onion trash bin service. <a href="http://trashbakket2sfmaqwmvv57dfnmacugvuhwxtxaehcma6ladugfe2cyd.onion/" target="_blank">Visit</a></li>
+            <li><strong>http://xmh57jrknzkhv6y3ls3ubitzfqnkrwxhopf5aygthi7d6rplyvk3noyd.onion/</strong> — Onion link for hidden services. <a href="http://xmh57jrknzkhv6y3ls3ubitzfqnkrwxhopf5aygthi7d6rplyvk3noyd.onion/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section" id="dark-web-indexing">
+        <div class="section-header" onclick="toggleSection(this)">
+          Dark Web Indexing & Discovery <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>http://tor66sezptuu2nta.onion/</strong> — Tor66 dark web search engine. <a href="http://tor66sezptuu2nta.onion/" target="_blank">Visit</a></li>
+            <li><strong>http://onions.es/</strong> — Directory of .onion links. <a href="http://onions.es/" target="_blank">Visit</a></li>
+            <li><strong>https://onionlandsearchengine.com/</strong> — Clearnet-accessible dark web search engine. <a href="https://onionlandsearchengine.com/" target="_blank">Visit</a></li>
+            <li><strong>http://onion.link/faq.html</strong> — Onion gateway with FAQ section. <a href="http://onion.link/faq.html" target="_blank">Visit</a></li>
+            <li><strong>http://vps7nsnlz3n4ckiie5evi5oz2znes7p57gmrvundbmgat22luzd4z2id.onion/</strong> — Onion search/indexing service. <a href="http://vps7nsnlz3n4ckiie5evi5oz2znes7p57gmrvundbmgat22luzd4z2id.onion/" target="_blank">Visit</a></li>
+            <li><strong>http://dreadditevelidot.onion/</strong> — Dread: Reddit-style dark web forum. <a href="http://dreadditevelidot.onion/" target="_blank">Visit</a></li>
+            <li><strong>https://dark.fail/</strong> — Uptime monitor & links to major onion services. <a href="https://dark.fail/" target="_blank">Visit</a></li>
+            <li><strong>https://darkwebnews.com/</strong> — News and updates on the dark web. <a href="https://darkwebnews.com/" target="_blank">Visit</a></li>
+            <li><strong>https://ahmia.fi/</strong> — Tor search engine available on clearnet. <a href="https://ahmia.fi/" target="_blank">Visit</a></li>
+            <li><strong>https://www.topsimilarsites.com/</strong> — Discover websites similar to any URL. <a href="https://www.topsimilarsites.com/" target="_blank">Visit</a></li>
+            <li><strong>https://www.similarsitesearch.com/</strong> — Find related or alternative sites. <a href="https://www.similarsitesearch.com/" target="_blank">Visit</a></li>
+            <li><strong>https://similarsites.com/</strong> — Tool to explore similar websites. <a href="https://similarsites.com/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section" id="darknet-marketplaces">
+        <div class="section-header" onclick="toggleSection(this)">
+          Darknet Marketplaces & Platforms <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>Vice Market</strong> — Popular darknet marketplace. <a href="http://vice2e3gr3pmaikukidllstulxvkb7a247gkguihzvyk3gqwdpolqead.onion/" target="_blank">Visit</a></li>
+            <li><strong>Yzrr Market</strong> — Active onion-based black market. <a href="http://yzrrne3pveltulbavydr2kiashvlnysdwclwmklo6cyjuqpxi7ku4xqd.onion/" target="_blank">Visit</a></li>
+            <li><strong>Royal Market</strong> — Notorious vendor platform. <a href="http://royalrnpvfbodtt5altnnzano6hquvn2d5qy55oofc2zyqciogcevrad.onion/" target="_blank">Visit</a></li>
+            <li><strong>Nemesis Market</strong> — Darknet service portal. <a href="http://nemesis555nchzn2dogee6mlc7xxgeeshqirmh3yzn4lo5cnd4s5a4yd.onion/" target="_blank">Visit</a></li>
+            <li><strong>Kingdom Market</strong> — Encrypted commerce market. <a href="http://kingdom5bb43gc5umrviiwbicomgrma57jcmxm5uinjnfmegepbhmrad.onion/" target="_blank">Visit</a></li>
+            <li><strong>Incognito Market</strong> — Privacy-focused trading. <a href="http://incognito2sjotqmbkys7wivkpq7d4a4tkpweoiqefk7mpf7uvyfalad.onion/" target="_blank">Visit</a></li>
+            <li><strong>6c5qae Onion Site</strong> — Possibly market or directory. <a href="http://6c5qaeiibh6ggmobsrv6vuilgb5uzjejpt2n3inoz2kv2sgzocymdvyd.onion/" target="_blank">Visit</a></li>
+            <li><strong>EG5PJ Onion Service</strong> — Anonymous content site. <a href="http://eg5pj3r4xhybxgfkjnkhbhwgkuonp5wtla3mbpuzphzk6lxkhftnvuyd.onion/" target="_blank">Visit</a></li>
+            <li><strong>Bohemia Market</strong> — Vendor and buyer hub. <a href="http://bohemiaobko4cecexkj5xmlaove6yn726dstp5wfw4pojjwp6762paqd.onion/" target="_blank">Visit</a></li>
+            <li><strong>ASAP Market</strong> — Online illicit trading site. <a href="http://asap2u4pvplnkzl7ecle45wajojnftja45wvovl3jrvhangeyq67ziid.onion/" target="_blank">Visit</a></li>
+            <li><strong>SN2S Onion Page</strong> — Unknown content/service. <a href="http://sn2sfdqay6cxztroslaxa36covrhoowe6a5xug6wlm6ek7nmeiujgvad.onion/" target="_blank">Visit</a></li>
+            <li><strong>SSQVYN Onion</strong> — Possible forum or vendor site. <a href="http://ssqvynv6njsoalswq6g4excxyvq2ygu6apanfhr4ajvwxxbwwimkj6id.onion/" target="_blank">Visit</a></li>
+            <li><strong>AlphaBay</strong> — Re-emerged darknet marketplace. <a href="http://alphabay522szl32u4ci5e3iokdsyth56ei7rwngr2wm7i5jo54j2eid.onion/" target="_blank">Visit</a></li>
+            <li><strong>I2P Darknet Site</strong> — Accessed via I2P, not Tor. <a href="http://tnaefzkcnhryeusi7hdpqujqiqmnbtah3dmjcg3gvezohunjuxbq.b32.i2p/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+
+      <div class="section" id="ransomware-leaks">
+        <div class="section-header" onclick="toggleSection(this)">
+          Ransomware Leak Sites & Groups <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>BlackCat (ALPHV)</strong> — Ransomware group press site. <a href="http://x2miyuiwpib2imjr5ykyjngdu7v6vprkkhjltrk4qafymtawey4qzwid.onion/press" target="_blank">Visit</a></li>
+            <li><strong>RansomHouse</strong> — Data leak and extortion portal. <a href="http://rnsm777cdsjrsdlbs4v5qoeppu3px6sb2igmh53jzrx7ipcrbjz5b2ad.onion/" target="_blank">Visit</a></li>
+            <li><strong>Ragnar Locker</strong> — Exposed victim data and threats. <a href="http://rgleaktxuey67yrgspmhvtnrqtgogur35lwdrup4d3igtbm3pupc4lyd.onion/index.php" target="_blank">Visit</a></li>
+            <li><strong>Quantum</strong> — Ransom group with leak site. <a href="http://quantum445bh3gzuyilxdzs5xdepf3b7lkcupswvkryf3n7hgzpxebid.onion/" target="_blank">Visit</a></li>
+            <li><strong>RansomBoggs</strong> — Leak and negotiation platform. <a href="http://rbvuetuneohce3ouxjlbxtimyyxokb4btncxjbo44fbgxqy7tskinwad.onion/" target="_blank">Visit</a></li>
+            <li><strong>Lorenz</strong> — Ransomware extortion site. <a href="http://lorenzmlwpzgxq736jzseuterytjueszsvznuibanxomlpkyxk6ksoyd.onion/" target="_blank">Visit</a></li>
+            <li><strong>LockBit</strong> — Notorious ransomware group. <a href="http://lockbitapt6vx57t3eeqjofwgcglmutr3a35nygvokja5uuccip4ykyd.onion/" target="_blank">Visit</a></li>
+            <li><strong>Grief</strong> — Data leak site for pressure tactics. <a href="http://griefcameifmv4hfr3auozmovz5yi6m3h3dwbuqw7baomfxoxz4qteid.onion/" target="_blank">Visit</a></li>
+            <li><strong>Cuba Ransomware</strong> — Victim exposure platform. <a href="http://cuba4ikm4jakjgmkezytyawtdgr2xymvy6nvzgw5cglswg3si76icnqd.onion/" target="_blank">Visit</a></li>
+            <li><strong>Conti News (Old)</strong> — Former Conti gang leaks. <a href="http://continewsnv5otx5kaoje7krkto2qbu3gtqef22mnr7eaxw3y6ncz3ad.onion/" target="_blank">Visit</a></li>
+            <li><strong>Santa Ransomware</strong> — Lesser-known group site. <a href="http://santat7kpllt6iyvqbr7q4amdv6dzrh6paatvyrzl7ry3zm72zigf4ad.onion/" target="_blank">Visit</a></li>
+            <li><strong>Bl4ckTor</strong> — Leak site for stolen data. <a href="http://bl4cktorpms2gybrcyt52aakcxt6yn37byb65uama5cimhifcscnqkid.onion/" target="_blank">Visit</a></li>
+            <li><strong>NQ4Z Group</strong> — Public extortion onion site. <a href="http://nq4zyac4ukl4tykmidbzgdlvaboqeqsemkp4t35bzvjeve6zm2lqcjid.onion/" target="_blank">Visit</a></li>
+            <li><strong>AvosLocker</strong> — Victim leak and contact site. <a href="http://avosqxh72b5ia23dl5fgwcpndkctuzqvh2iefk5imp3pi5gfhel5klad.onion/" target="_blank">Visit</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section" id="osint-resources">
+        <div class="section-header" onclick="toggleSection(this)">
+          OSINT Resources and Tools <span class="icon">▼</span>
+        </div>
+        <div class="section-content">
+          <ul class="tool-list">
+            <li><strong>Google Drive Folder – OSINT Resources</strong> — <a href="https://drive.google.com/drive/folders/1CBcemFdorkAqJ-Sthsh67OVHgH4FQF05" target="_blank">Visit</a></li>
+            <li><strong>Google Spreadsheet – OSINT Tool Index</strong> — <a href="https://docs.google.com/spreadsheets/u/0/d/1LHP3gfppDBBPENffw9R7FrhpRxhmP0UhaLiklbQN7tA/htmlview" target="_blank">View</a></li>
+            <li><strong>PDF – OSINT Tool Collection</strong> — <a href="https://drive.google.com/file/d/1pLjKuNjFyHGDiOAW7sLmX7L9o2j5kdbF/view" target="_blank">Download</a></li>
+            <li><strong>OSINT Handbook – i-intelligence</strong> — <a href="https://i-intelligence.eu/uploads/public-documents/OSINT_Handbook_June-2018_Final.pdf" target="_blank">Read</a></li>
+            <li><strong>BU OSINT Security Camp PDF</strong> — <a href="https://www.bu.edu/tech/files/2020/08/BU-Security-Camp-2020-OSINT.pdf" target="_blank">Read</a></li>
+            <li><strong>IGNOU Unit on OSINT</strong> — <a href="https://www.egyankosh.ac.in/bitstream/123456789/90899/3/Unit-4.pdf" target="_blank">Read</a></li>
+            <li><strong>HHS Analyst OSINT Note</strong> — <a href="https://www.hhs.gov/sites/default/files/osint-how-to-analyst-note-tlpwhite.pdf" target="_blank">Read</a></li>
+            <li><strong>ASTRJ Open Source Intelligence PDF</strong> — <a href="https://www.astrj.com/pdf-186036-109309?filename=Open%20Source%20Intelligence.pdf" target="_blank">Read</a></li>
+            <li><strong>OSINT Tools List – SlideShare</strong> — <a href="https://www.slideshare.net/slideshow/324-osint-tools-lists-osint-tools-lists-253289580/253289580" target="_blank">View</a></li>
+            <li><strong>DIA OSINT Strategy PDF</strong> — <a href="https://www.dia.mil/Portals/110/Documents/OSINT-Strategy.pdf" target="_blank">Read</a></li>
+            <li><strong>Social Engineering OSINT PDF</strong> — <a href="https://cdn.prod.website-files.com/601959b8cde20c101809c86a/60f972049b28ecf2d873c266_Social-Engineering-Part-Two-OSINT%20(1).pdf" target="_blank">Read</a></li>
+            <li><strong>Google Spreadsheet – OSINT Sheet</strong> — <a href="https://docs.google.com/spreadsheets/d/1JxBbMt4JvGr--G0Pkl3jP9VDTBunR2uD3_faZXDvhxc/edit?gid=603724104#gid=603724104" target="_blank">View</a></li>
+          </ul>
+        </div>
+      </div>
+      
+
+    <div class="section" id="multimedia-osint-tutorials">
+      <div class="section-header" onclick="toggleSection(this)">
+        Multimedia OSINT Tutorials <span class="icon">▼</span>
+      </div>
+      <div class="section-content">
+        <ul class="tool-list">
+          <li><strong>cRK-hbS3H8w</strong> — OSINT Tutorial Video. <a href="https://www.youtube.com/watch?v=cRK-hbS3H8w" target="_blank">Watch</a></li>
+          <li><strong>URE1AA4LVCY</strong> — OSINT Training by Authentic8. <a href="https://www.youtube.com/watch?v=URE1AA4LVCY" target="_blank">Watch</a></li>
+          <li><strong>DJAG6jIadmU</strong> — OSINT Tool Walkthrough. <a href="https://www.youtube.com/watch?v=DJAG6jIadmU" target="_blank">Watch</a></li>
+          <li><strong>5FbFS1l7vyE</strong> — Practical OSINT Tutorial. <a href="https://www.youtube.com/watch?v=5FbFS1l7vyE" target="_blank">Watch</a></li>
+          <li><strong>1hvVcEhcbLM</strong> — Advanced OSINT Techniques. <a href="https://www.youtube.com/watch?v=1hvVcEhcbLM" target="_blank">Watch</a></li>
+          <li><strong>fNzpcB7ODxQ</strong> — OSINT with Real Examples. <a href="https://www.youtube.com/watch?v=fNzpcB7ODxQ" target="_blank">Watch</a></li>
+          <li><strong>opLD4zFB5z0</strong> — OSINT for Investigators. <a href="https://www.youtube.com/watch?v=opLD4zFB5z0" target="_blank">Watch</a></li>
+          <li><strong>qwA6MmbeGNo</strong> — Tools Used in OSINT. <a href="https://www.youtube.com/watch?v=qwA6MmbeGNo" target="_blank">Watch</a></li>
+          <li><strong>OSINT Channel</strong> — OSINT Training & Tips. <a href="https://www.youtube.com/channel/UC9-vpBmjX6Hujd1LQ65Lf2A" target="_blank">Visit</a></li>
+          <li><strong>Authentic8TV</strong> — OSINT Operational Demos. <a href="https://www.youtube.com/user/Authentic8TV" target="_blank">Visit</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="section" id="hidden-internet-resources">
+      <div class="section-header" onclick="toggleSection(this)">
+        Hidden Internet Resources <span class="icon">▼</span>
+      </div>
+      <div class="section-content">
+        <ul class="tool-list">
+          <li><strong>xjypo5vzgmo7jca6b322dnqbsdnp3amd24ybx26x5nxbusccjkm4pwid.onion.pet</strong> — Hidden Onion Resource. <a href="http://xjypo5vzgmo7jca6b322dnqbsdnp3amd24ybx26x5nxbusccjkm4pwid.onion.pet/" target="_blank">Visit</a></li>
+          <li><strong>dominosy6liy333vol227hjsud767wa7jkokhgs2f6ew6eultnyhodad.onion.pet</strong> — Dark Web Marketplace. <a href="http://dominosy6liy333vol227hjsud767wa7jkokhgs2f6ew6eultnyhodad.onion.pet/" target="_blank">Visit</a></li>
+          <li><strong>thehiddenwiki.com</strong> — Comprehensive Dark Web Wiki. <a href="https://thehiddenwiki.com/" target="_blank">Visit</a></li>
+          <li><strong>ahmia.fi</strong> — Search Engine for Tor. <a href="https://ahmia.fi" target="_blank">Visit</a></li>
+          <li><strong>darksearch.io</strong> — Dark Web Search Engine. <a href="https://darksearch.io/" target="_blank">Visit</a></li>
+          <li><strong>2jwcnprqbugvyi6ok2h2h7u26qc6j5wxm7feh3znlh2qu3h6hjld4kyd.onion</strong> — Hidden Tor Resource. <a href="https://2jwcnprqbugvyi6ok2h2h7u26qc6j5wxm7feh3znlh2qu3h6hjld4kyd.onion/" target="_blank">Visit</a></li>
+          <li><strong>3g2upl4pq6kufc4m.onion</strong> — Onion Site for Search. <a href="https://3g2upl4pq6kufc4m.onion/" target="_blank">Visit</a></li>
+          <li><strong>grams64rarzrk7rzdaz2fpb7lehcyi7zrrf5kd6w2uoamp7jw2aq6vyd.onion</strong> — Onion Search Tool. <a href="https://grams64rarzrk7rzdaz2fpb7lehcyi7zrrf5kd6w2uoamp7jw2aq6vyd.onion/" target="_blank">Visit</a></li>
+          <li><strong>5u56fjmxu63xcmbk.onion</strong> — Hidden Web Resource. <a href="https://5u56fjmxu63xcmbk.onion/search.php" target="_blank">Visit</a></li>
+          <li><strong>zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion</strong> — Dark Wiki Site. <a href="https://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion/wiki/index.php/Main_Page" target="_blank">Visit</a></li>
+          <li><strong>torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion</strong> — Onion Search Tool. <a href="https://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion/" target="_blank">Visit</a></li>
+          <li><strong>7ukmkdtyxdkdivtjad57klqnd3kdsmq6tp45rrsxqnu76zzv3jvitlqd.onion</strong> — Tor Resource Site. <a href="http://7ukmkdtyxdkdivtjad57klqnd3kdsmq6tp45rrsxqnu76zzv3jvitlqd.onion/" target="_blank">Visit</a></li>
+          <li><strong>educate6mw6luxyre24uq3ebyfmwguhpurx7ann635llidinfvzmi3yd.onion</strong> — Hidden Educational Site. <a href="http://educate6mw6luxyre24uq3ebyfmwguhpurx7ann635llidinfvzmi3yd.onion/" target="_blank">Visit</a></li>
+          <li><strong>trashbakket2sfmaqwmvv57dfnmacugvuhwxtxaehcma6ladugfe2cyd.onion</strong> — Hidden Web Resource. <a href="http://trashbakket2sfmaqwmvv57dfnmacugvuhwxtxaehcma6ladugfe2cyd.onion/" target="_blank">Visit</a></li>
+          <li><strong>xmh57jrknzkhv6y3ls3ubitzfqnkrwxhopf5aygthi7d6rplyvk3noyd.onion</strong> — Hidden Web Marketplace. <a href="http://xmh57jrknzkhv6y3ls3ubitzfqnkrwxhopf5aygthi7d6rplyvk3noyd.onion/" target="_blank">Visit</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="section" id="anonymous-search-tools">
+      <div class="section-header" onclick="toggleSection(this)">
+        Anonymous Search Tools <span class="icon">▼</span>
+      </div>
+      <div class="section-content">
+        <ul class="tool-list">
+          <li><strong>Disconnect Search</strong> — Private search using major engines. <a href="https://search.disconnect.me/" target="_blank">Visit</a></li>
+          <li><strong>Oscobo</strong> — UK-based anonymous search. <a href="https://www.oscobo.com/" target="_blank">Visit</a></li>
+          <li><strong>Search Encrypt</strong> — Encrypts and protects your search history. <a href="https://www.searchencrypt.com/home" target="_blank">Visit</a></li>
+          <li><strong>Findx</strong> — Open-source, private search engine. <a href="https://www.findx.com/" target="_blank">Visit</a></li>
+          <li><strong>Swisscows</strong> — Privacy-respecting search engine based in Switzerland. <a href="https://swisscows.com/en" target="_blank">Visit</a></li>
+          <li><strong>Mojeek</strong> — Independent search with its own index. <a href="https://www.mojeek.com/" target="_blank">Visit</a></li>
+          <li><strong>Startpage</strong> — Google results without tracking. <a href="https://www.startpage.com/" target="_blank">Visit</a></li>
+          <li><strong>Yahoo (Onesearch Mode)</strong> — Private search by Verizon. <a href="https://in.search.yahoo.com/?fr2=p:onesearch,mkt:us&guccounter=1" target="_blank">Visit</a></li>
+          <li><strong>MetaGer</strong> — German open-source metasearch engine. <a href="https://metager.org/" target="_blank">Visit</a></li>
+          <li><strong>Gibiru</strong> — Uncensored anonymous search engine. <a href="https://gibiru.com/" target="_blank">Visit</a></li>
+          <li><strong>Brave Search</strong> — Privacy-first search from Brave browser. <a href="https://search.brave.com/" target="_blank">Visit</a></li>
+          <li><strong>DuckDuckGo</strong> — Most popular private search engine. <a href="https://duckduckgo.com/" target="_blank">Visit</a></li>
+        </ul>
+      </div>
+    </div>
+    
+  
+    <div class="section" id="telegram-useful-bots">
+      <div class="section-header" onclick="toggleSection(this)">
+        Telegram Useful Bots <span class="icon">▼</span>
+      </div>
+      <div class="section-content">
+        <ul class="tool-list">
+          <li><strong>@FileConvertBot</strong> — Convert various file formats. <a href="https://t.me/FileConvertBot" target="_blank">Visit</a></li>
+          <li><strong>@pdfbot</strong> — Convert files to PDF and manage PDFs. <a href="https://t.me/pdfbot" target="_blank">Visit</a></li>
+          <li><strong>@allsaverbot</strong> — Download files from different platforms. <a href="https://t.me/allsaverbot" target="_blank">Visit</a></li>
+          <li><strong>@youtubednbot</strong> — Download YouTube videos and convert them. <a href="https://t.me/youtubednbot" target="_blank">Visit</a></li>
+          <li><strong>@apkdl_bot</strong> — APK file download bot for Android apps. <a href="https://t.me/apkdl_bot" target="_blank">Visit</a></li>
+          <li><strong>@uploadbot</strong> — File upload and sharing bot. <a href="https://t.me/uploadbot" target="_blank">Visit</a></li>
+          <li><strong>@TempMail_org_bot</strong> — Disposable email service for privacy. <a href="https://t.me/TempMail_org_bot" target="_blank">Visit</a></li>
+          <li><strong>@etlgr_bot</strong> — Extract information from Telegram. <a href="https://t.me/etlgr_bot" target="_blank">Visit</a></li>
+          <li><strong>@TempMailBot</strong> — Temporary email generator for privacy. <a href="https://t.me/TempMailBot" target="_blank">Visit</a></li>
+          <li><strong>@TranslateBoT</strong> — Translation bot for multiple languages. <a href="https://t.me/TranslateBoT" target="_blank">Visit</a></li>
+          <li><strong>@YTranslateBot</strong> — Yandex-based translation bot. <a href="https://t.me/YTranslateBot" target="_blank">Visit</a></li>
+          <li><strong>@TranslateRuBot</strong> — Russian-language translation bot. <a href="https://t.me/TranslateRuBot" target="_blank">Visit</a></li>
+          <li><strong>@bacakubot</strong> — Search for websites and links in Turkish. <a href="https://t.me/bacakubot" target="_blank">Visit</a></li>
+          <li><strong>@chotaurlbot</strong> — URL shortening bot. <a href="https://t.me/chotaurlbot" target="_blank">Visit</a></li>
+          <li><strong>@auddbot</strong> — Audio-to-text transcription bot. <a href="https://t.me/auddbot" target="_blank">Visit</a></li>
+          <li><strong>@KeyGeneratorBot</strong> — Generate secure passwords and keys. <a href="https://t.me/KeyGeneratorBot" target="_blank">Visit</a></li>
+          <li><strong>@EasyStrongPasswordBot</strong> — Generate strong passwords easily. <a href="https://t.me/EasyStrongPasswordBot" target="_blank">Visit</a></li>
+          <li><strong>@TextTSBot</strong> — Text-to-speech conversion bot. <a href="https://t.me/TextTSBot" target="_blank">Visit</a></li>
+          <li><strong>@bing</strong> — Search via Bing through Telegram. <a href="https://t.me/bing" target="_blank">Visit</a></li>
+          <li><strong>@reverseSearchBot</strong> — Reverse image search bot for Telegram. <a href="https://t.me/reverseSearchBot" target="_blank">Visit</a></li>
+          <li><strong>@Betruephonebot</strong> — Phone number lookup bot. <a href="https://t.me/Betruephonebot" target="_blank">Visit</a></li>
+          <li><strong>@sitecheck_info_bot</strong> — Website analysis and security check bot. <a href="https://t.me/sitecheck_info_bot" target="_blank">Visit</a></li>
+          <li><strong>@WebsiteCopierVip_bot</strong> — Website copier bot. <a href="https://t.me/WebsiteCopierVip_bot" target="_blank">Visit</a></li>
+          <li><strong>@TempMail_org_bot</strong> — Another disposable email service bot for privacy. <a href="https://t.me/TempMail_org_bot" target="_blank">Visit</a></li>
+          <li><strong>@tgdb_bot</strong> — Telegram database bot. <a href="https://t.me/tgdb_bot" target="_blank">Visit</a></li>
+          <li><strong>@IPLookUpRobot</strong> — IP lookup and information bot. <a href="https://t.me/IPLookUpRobot" target="_blank">Visit</a></li>
+          <li><strong>@UniversalSearchOfBot</strong> — Universal search engine bot. <a href="https://t.me/UniversalSearchOfBot" target="_blank">Visit</a></li>
+          <li><strong>@Whois_Bot</strong> — Whois lookup bot for domains and IPs. <a href="https://t.me/Whois_Bot" target="_blank">Visit</a></li>
+          <li><strong>@only_good_contacts_bot</strong> — Collect good contacts and business leads. <a href="https://t.me/only_good_contacts_bot" target="_blank">Visit</a></li>
+          <li><strong>@NUMBER_TRAC_NG_BOT</strong> — Number trace and lookup bot. <a href="https://t.me/NUMBER_TRAC_NG_BOT" target="_blank">Visit</a></li>
+          <li><strong>@TlgGeoEarthBot</strong> — Location-based search bot for Telegram. <a href="https://t.me/TlgGeoEarthBot" target="_blank">Visit</a></li>
+          <li><strong>@osint_maigret_bot</strong> — OSINT search and investigation bot. <a href="https://t.me/osint_maigret_bot" target="_blank">Visit</a></li>
+          <li><strong>@truecaller9bot</strong> — Identify unknown phone numbers and contacts. <a href="https://t.me/truecaller9bot" target="_blank">Visit</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="section" id="hacking-osint-tutorials">
+      <div class="section-header" onclick="toggleSection(this)">
+        Hacking & OSINT Tutorials <span class="icon">▼</span>
+      </div>
+      <div class="section-content">
+        <ul class="tool-list">
+          <li><strong>Cyber Security Overview (Hindi)</strong> — Introductory tutorial. <a href="https://youtu.be/FARSxWjlPkk?feature=shared" target="_blank">Watch</a></li>
+          <li><strong>Full Ethical Hacking Course Playlist</strong> — Complete course for beginners. <a href="https://www.youtube.com/watch?v=cKEf8H9cQGM&list=PLwO5-rumi8A4J7h4Fm92TEC00gfZUk7ls" target="_blank">Watch</a></li>
+          <li><strong>Cyber Security Full Course Hindi</strong> — Long-form detailed course. <a href="https://www.youtube.com/watch?v=fd0L1IousZU" target="_blank">Watch</a></li>
+          <li><strong>Cyber Security Hindi Playlist</strong> — Educational series. <a href="https://www.youtube.com/watch?v=d_FTRwCnPlU&list=PLAb9nv6qtkAzg3NXdWn4W7mppaJnG1lqm" target="_blank">Watch</a></li>
+          <li><strong>Complete Cyber Security Course (Hindi)</strong> — Step-by-step training. <a href="https://www.youtube.com/watch?v=J8odohybOIM" target="_blank">Watch</a></li>
+          <li><strong>Cyber Security Basics to Advanced</strong> — Comprehensive course. <a href="https://www.youtube.com/watch?v=a9yDv-kyDMc" target="_blank">Watch</a></li>
+          <li><strong>Cyber Security Lecture Hindi</strong> — In-depth walkthrough. <a href="https://www.youtube.com/watch?v=oYVYBPTe2zQ" target="_blank">Watch</a></li>
+          <li><strong>Ethical Hacking Course Overview</strong> — Learn basics in Hindi. <a href="https://www.youtube.com/watch?v=vK4Mno4QYqk&t=116s" target="_blank">Watch</a></li>
+          <li><strong>Ethical Hacking for Beginners</strong> — Training videos. <a href="https://www.youtube.com/watch?v=I9RkcSduI7g" target="_blank">Watch</a></li>
+          <li><strong>Cybersecurity Fundamentals Playlist</strong> — Series from basics. <a href="https://www.youtube.com/watch?v=K9e9L1NTVu8&list=PLO0Xb9O7zHTzQmcVxyjlmjcx_GyYE8dkN" target="_blank">Watch</a></li>
+          <li><strong>Advanced Cybersecurity Training</strong> — Deep dive playlist. <a href="https://www.youtube.com/watch?v=pB4xMzBc0rA&list=PLO0Xb9O7zHTwNDoOp4Vb24Azu-dFvY0Gy" target="_blank">Watch</a></li>
+          <li><strong>Cyber Security Crash Course</strong> — Quick and effective. <a href="https://www.youtube.com/watch?v=EcsTWHvhASU&list=PLO0Xb9O7zHTxg2xu8LIebivju2DwzDCnx" target="_blank">Watch</a></li>
+          <li><strong>Expert Cyber Security Course</strong> — In-depth learning. <a href="https://www.youtube.com/watch?v=oYVYBPTe2zQ" target="_blank">Watch</a></li>
+          <li><strong>Digital Security Awareness</strong> — Training videos in Hindi. <a href="https://www.youtube.com/watch?v=JfvHzsexnmc&list=PLa2xctTiNSCiTGuejkc05zsr-G5t9AuH8" target="_blank">Watch</a></li>
+          <li><strong>Cyber Investigation Course Hindi</strong> — Focused on crime investigation. <a href="https://www.youtube.com/watch?v=sq_oRgMKEzQ&list=PLho7QJrwpUbRc0GfTIqvUX6tMf3qOxNjg" target="_blank">Watch</a></li>
+          <li><strong>Complete Ethical Hacking Course (Hindi)</strong> — Full beginner-friendly playlist. <a href="https://www.youtube.com/watch?v=wwLUo2lKVCs&list=PLFOJ_XqzVbLMshj5eG3oFS6LP5K6I2wLE" target="_blank">Watch</a></li>
+          <li><strong>Cyber Crime Investigation Course</strong> — Learn investigation step-by-step. <a href="https://www.youtube.com/watch?v=vD7uJ8aP0zA" target="_blank">Watch</a></li>
+          <li><strong>Crime Investigation Training</strong> — Course for beginners. <a href="https://www.youtube.com/watch?v=uDIao9-7Dbk" target="_blank">Watch</a></li>
+        </ul>
+      </div>
+    </div>
+    
+
+<div class="section" id="about">
+  <div class="section-header" onclick="toggleSection(this)">
+    About <span class="icon">▼</span>
+  </div>
+  <div class="section-content">
+    <ul class="tool-list">
+      <li><strong>Purpose</strong> — This website is designed to provide law enforcement and investigative professionals with a comprehensive list of OSINT (Open Source Intelligence) tools. The tools are categorized for easy navigation, allowing users to find specific tools and resources needed for their investigations.</li>
+      <li><strong>Goal</strong> — Our goal is to assist in gathering intelligence from publicly available sources, improving the efficiency of cybercrime investigations, research, and overall digital forensics work.</li>
+      <li><strong>Target Audience</strong> — This site is intended for law enforcement personnel, investigators, cyber security professionals, and anyone interested in OSINT research.</li>
+      <li><strong>How to Use</strong> — Browse through the categories in the sidebar to explore various tools. You can visit each tool's page by clicking the provided links.</li>
+      <li><strong>Feedback</strong> — If you have any suggestions or would like to contribute additional OSINT tools, please feel free to contact us through the contact form or email.</li>
+      <li><strong>Disclaimer</strong> — All tools listed here are publicly available and meant for legitimate investigative purposes. We do not endorse or support illegal activities.</li>
+    </ul>
+  </div>
+</div>
+
+       
+      <footer style="color: white; padding: 20px 0; text-align: center; font-family: Arial, sans-serif;">
+        <div style="max-width: 1200px; margin: auto;">
+          <h1 style="margin: 0; font-size: 20px;">VEDANT HONDRE</h1>
+          <p style="margin: 10px 0 0;">&copy; 2025 Cyber Police Pune. All rights reserved.</p>
+        </div>
+      </footer>
+      
+      
+      
+  
+  </main>
+
+  
+
+  <script>
+    function toggleSection(header) {
+      const content = header.nextElementSibling;
+      const icon = header.querySelector('.icon');
+      content.classList.toggle("show");
+      icon.textContent = content.classList.contains("show") ? "▲" : "▼";
+    }
+
+    document.querySelectorAll(".category-link").forEach(link => {
+      link.addEventListener("click", function (e) {
+        const id = this.getAttribute("href").substring(1);
+        const section = document.getElementById(id);
+        if (section) {
+          document.querySelectorAll(".section-content").forEach(sec => {
+            sec.classList.remove("show");
+            const icon = sec.previousElementSibling.querySelector(".icon");
+            if (icon) icon.textContent = "▼";
+          });
+
+          const content = section.querySelector(".section-content");
+          if (content) {
+            content.classList.add("show");
+            const icon = section.querySelector(".icon");
+            if (icon) icon.textContent = "▲";
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+
