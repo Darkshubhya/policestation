@@ -225,7 +225,7 @@
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         alert("Logged in successfully!");
-        window.location.href = "deshboard.html";
+        window.location.href = "dashboard.html";
       } catch (error) {
         document.getElementById("errorMsg").textContent = error.message;
       }
