@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Swargate Police Station Login</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+      background-size: 600% 600%;
+      animation: bgAnimation 15s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 0 25px rgba(0, 170, 255, 0.3);
+      width: 100%;
+      max-width: 400px;
+      color: #ffffff;
+      text-align: center;
+      position: relative;
+    }
+
+    .login-container::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: 25px;
+      background: linear-gradient(45deg, rgba(0, 174, 255, 0.4), transparent);
+      z-index: -1;
+      animation: borderGlow 5s linear infinite;
+    }
+
+    @keyframes borderGlow {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    .logo {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #000;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      background: #00aaff;
+      color: white;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #0077cc;
+    }
+
+    .error-message {
+      color: #ff5c5c;
+      margin-top: 10px;
+    }
+
+    .form-group {
+      display: none;
+    }
+
+    .form-group.active {
+      display: block;
+    }
+
+    .contact-section {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #ccc;
+      text-align: center;
+    }
+
+    .contact-section a {
+      color: #ff5722;
+      text-decoration: none;
+    }
+
+    .contact-section a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="photo_2025-04-19_05-17-20-removebg-preview.png" alt="Police Logo" class="logo" />
+    <h2>Swargate Police Station, Pune</h2>
+
+    <!-- Login Form -->
+    <div class="form-group active" id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <button type="button" onclick="handleLogin()">Login</button>
+      <button type="button" onclick="showSignup()">Don't have an account? Sign Up</button>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="form-group" id="signupForm">
+      <input type="email" id="signupEmail" placeholder="Email" required>
+      <input type="password" id="signupPassword" placeholder="Password" required>
+      <button type="button" onclick="handleSignup()">Sign Up</button>
+      <button type="button" onclick="showLogin()">Already have an account? Login</button>
+    </div>
+
+    <p id="errorMsg" class="error-message"></p>
+
+    <div class="contact-section">
+      <p>For login issues, contact us</p>
+      <a href="https://t.me/shubhya_2703" target="_blank">Contact on Telegram</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCI8fLt8tC5pywSjqTDk7uZEYUx0QySzLg",
+      authDomain: "simple-web-app-f0d44.firebaseapp.com",
+      projectId: "simple-web-app-f0d44",
+      storageBucket: "simple-web-app-f0d44.appspot.com",
+      messagingSenderId: "882372897183",
+      appId: "1:882372897183:web:4aaa7f3bd35b63b9cdb5aa",
+      measurementId: "G-KYE05MTPBH"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.showSignup = () => {
+      document.getElementById("loginForm").classList.remove("active");
+      document.getElementById("signupForm").classList.add("active");
+      document.getElementById("errorMsg").textContent = "";
+    };
+
+    window.showLogin = () => {
+      document.getElementById("signupForm").classList.remove("active");
+      document.getElementById("loginForm").classList.add("active");
+      document.getElementById("errorMsg").textContent = "";
+    };
+
+    // SIGNUP
+    window.handleSignup = async () => {
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+      const errorBox = document.getElementById("errorMsg");
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        await setDoc(doc(db, "users", user.uid), {
+          email: user.email,
+          createdAt: new Date().toISOString()
+        });
+        alert("User signed up successfully!");
+        showLogin();
+      } catch (error) {
+        let message = "Something went wrong. Please try again.";
+        if (error.code === "auth/email-already-in-use") {
+          message = "This email is already registered.";
+        } else if (error.code === "auth/invalid-email") {
+          message = "Please enter a valid email address.";
+        } else if (error.code === "auth/weak-password") {
+          message = "Password should be at least 6 characters.";
+        }
+        errorBox.textContent = message;
+      }
+    };
+
+    // LOGIN
+    window.handleLogin = async () => {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      const errorBox = document.getElementById("errorMsg");
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        alert("Logged in successfully!");
+        window.location.href = "deshboard.html";
+      } catch (error) {
+        let message = "Login failed. Please check your credentials.";
+        if (error.code === "auth/user-not-found") {
+          message = "No account found with this email.";
+        } else if (error.code === "auth/wrong-password") {
+          message = "Incorrect password. Please try again.";
+        } else if (error.code === "auth/invalid-email") {
+          message = "Invalid email address.";
+        }
+        errorBox.textContent = message;
+      }
+    };
+  </script>
+</body>
+</html>
