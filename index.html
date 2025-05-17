@@ -15,6 +15,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: background 0.5s ease;
+    }
+
+    body.dark-mode {
+      background: #121212;
     }
 
     @keyframes bgAnimation {
@@ -37,23 +42,8 @@
       position: relative;
     }
 
-    .login-container::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      border-radius: 25px;
-      background: linear-gradient(45deg, rgba(0, 174, 255, 0.4), transparent);
-      z-index: -1;
-      animation: borderGlow 5s linear infinite;
-    }
 
-    @keyframes borderGlow {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
-    }
+
 
     .logo {
       width: 200px;
@@ -88,24 +78,18 @@
       margin-top: 10px;
     }
 
-    button:hover {
-      background: #0077cc;
-    }
+    button:hover { background: #0077cc; }
+    .google-button { background: #db4437; }
+    .error-message { color: #ff5c5c; margin-top: 10px; }
 
-    .google-button {
-      background: #db4437;
-    }
+    .form-group { display: none; }
+    .form-group.active { display: block; }
 
-    .error-message {
-      color: #ff5c5c;
-      margin-top: 10px;
-    }
-
-    .form-group {
-      display: none;
-    }
-
-    .form-group.active {
+    .toggle-password {
+      color: #ccc;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-align: right;
       display: block;
     }
 
@@ -113,7 +97,6 @@
       margin-top: 20px;
       font-size: 0.9rem;
       color: #ccc;
-      text-align: center;
     }
 
     .contact-section a {
@@ -123,6 +106,13 @@
 
     .contact-section a:hover {
       text-decoration: underline;
+    }
+
+    .dark-toggle {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: #ddd;
     }
   </style>
 </head>
@@ -135,7 +125,9 @@
     <div class="form-group active" id="loginForm">
       <input type="email" id="loginEmail" placeholder="Email" required>
       <input type="password" id="loginPassword" placeholder="Password" required>
+      <span class="toggle-password" onclick="toggleVisibility('loginPassword')">Show Password</span>
       <button type="button" onclick="handleLogin()">Login</button>
+      <button type="button" onclick="resetPassword()">Forgot Password?</button>
       <button type="button" class="google-button" onclick="handleGoogleLogin()">Sign in with Google</button>
       <button type="button" onclick="showSignup()">Don't have an account? Sign Up</button>
     </div>
@@ -144,17 +136,23 @@
     <div class="form-group" id="signupForm">
       <input type="email" id="signupEmail" placeholder="Email" required>
       <input type="password" id="signupPassword" placeholder="Password" required>
+      <span class="toggle-password" onclick="toggleVisibility('signupPassword')">Show Password</span>
       <button type="button" onclick="handleSignup()">Sign Up</button>
       <button type="button" onclick="showLogin()">Already have an account? Login</button>
     </div>
 
     <p id="errorMsg" class="error-message"></p>
 
-    <div class="contact-section">
-      <p>For login issues, contact us</p>
-      <a href="https://t.me/shubhya_2703" target="_blank">Contact on Telegram</a>
-    </div>
+   <div style="margin-top: 30px; font-size: 0.8rem; color: #aaa;">
+  Designed & Developed by Vedant Hondre
+</div>
+
+    <div class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</div>
+  
+   
+  
   </div>
+
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
@@ -163,27 +161,33 @@
       createUserWithEmailAndPassword,
       signInWithEmailAndPassword,
       GoogleAuthProvider,
-      signInWithPopup
+      signInWithPopup,
+      sendPasswordResetEmail,
+      sendEmailVerification
     } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      updateDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-   const firebaseConfig = {
-  apiKey: "AIzaSyA2sdI4OM4wNkvl9b3c-_E8AM5Kir2WCk4",
-  authDomain: "backend-3fe16.firebaseapp.com",
-  projectId: "backend-3fe16",
-  storageBucket: "backend-3fe16.firebasestorage.app",
-  messagingSenderId: "323583200254",
-  appId: "1:323583200254:web:de55429dd5e9501ea88eaf",
-  measurementId: "G-3DQ1L9E83T"
-};
-
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2sdI4OM4wNkvl9b3c-_E8AM5Kir2WCk4",
+      authDomain: "backend-3fe16.firebaseapp.com",
+      projectId: "backend-3fe16",
+      storageBucket: "backend-3fe16.appspot.com",
+      messagingSenderId: "323583200254",
+      appId: "1:323583200254:web:de55429dd5e9501ea88eaf",
+      measurementId: "G-3DQ1L9E83T"
+    };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
     const provider = new GoogleAuthProvider();
 
-    // Switch forms
     window.showSignup = () => {
       document.getElementById("loginForm").classList.remove("active");
       document.getElementById("signupForm").classList.add("active");
@@ -196,14 +200,32 @@
       document.getElementById("errorMsg").textContent = "";
     };
 
-    // SIGNUP
+    // Toggle Password Visibility
+    window.toggleVisibility = (id) => {
+      const input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
+    };
+
+    // Dark Mode Toggle
+    window.toggleDarkMode = () => {
+      document.body.classList.toggle("dark-mode");
+    };
+
+    // Signup
     window.handleSignup = async () => {
       const email = document.getElementById("signupEmail").value;
       const password = document.getElementById("signupPassword").value;
 
+      if (password.length < 8 || !/\d/.test(password) || !/[!@#$%^&*]/.test(password)) {
+        document.getElementById("errorMsg").textContent = "Password must be 8+ chars with number & symbol.";
+        return;
+      }
+
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
+
+        await sendEmailVerification(user);
 
         await setDoc(doc(db, "users", user.uid), {
           email: user.email,
@@ -211,20 +233,31 @@
           createdAt: new Date().toISOString()
         });
 
-        alert("User signed up successfully!");
+        alert("Verification email sent. Please verify before logging in.");
         showLogin();
       } catch (error) {
         document.getElementById("errorMsg").textContent = error.message;
       }
     };
 
-    // LOGIN
+    // Login
     window.handleLogin = async () => {
       const email = document.getElementById("loginEmail").value;
       const password = document.getElementById("loginPassword").value;
 
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        if (!user.emailVerified) {
+          document.getElementById("errorMsg").textContent = "Please verify your email first.";
+          return;
+        }
+
+        await updateDoc(doc(db, "users", user.uid), {
+          lastLogin: serverTimestamp()
+        });
+
         alert("Logged in successfully!");
         window.location.href = "dashboard.html";
       } catch (error) {
@@ -232,13 +265,12 @@
       }
     };
 
-    // GOOGLE LOGIN
+    // Google Login
     window.handleGoogleLogin = async () => {
       try {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
 
-        // Save or update user document
         await setDoc(doc(db, "users", user.uid), {
           email: user.email,
           displayName: user.displayName || "",
@@ -246,12 +278,31 @@
           createdAt: new Date().toISOString()
         });
 
-        alert("Logged in with Google successfully!");
+        alert("Logged in with Google!");
         window.location.href = "dashboard.html";
       } catch (error) {
         document.getElementById("errorMsg").textContent = error.message;
       }
     };
+
+    // Forgot Password
+    window.resetPassword = async () => {
+      const email = prompt("Enter your email for password reset:");
+      if (email) {
+        try {
+          await sendPasswordResetEmail(auth, email);
+          alert("Reset link sent to your email.");
+        } catch (error) {
+          document.getElementById("errorMsg").textContent = error.message;
+        }
+      }
+    };
   </script>
 </body>
+
+
+
+
+
+
 </html>
